@@ -1,0 +1,29 @@
+---
+
+- import_tasks: software_redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- import_tasks: software_debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- import_tasks: software_shared.yml
+
+- import_tasks: admin_redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- import_tasks: admin_debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- import_tasks: admin_shared.yml
+
+- import_tasks: journalctl_shared.yml
+
+- import_tasks: ssh_shared.yml
+
+- import_tasks: firewall_redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- import_tasks: firewall_debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- import_tasks: fail2ban.yml

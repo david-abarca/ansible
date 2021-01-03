@@ -1,0 +1,5 @@
+---
+
+admin_username: '{{ lookup("env", "ANSIBLE_ADMIN") }}'
+
+ssh_private_key: '{{ lookup("env", "ANSIBLE_SSH_PRIVATE_KEY") }}'

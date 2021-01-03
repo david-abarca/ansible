@@ -1,0 +1,7 @@
+---
+
+- name: Shared | Create customised config file
+  copy:
+    src: jail.local
+    dest: /etc/fail2ban/jail.local
+  notify: Restart fail2ban

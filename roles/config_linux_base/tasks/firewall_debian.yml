@@ -1,0 +1,19 @@
+---
+
+- name: Debian | Start UFW
+  service:
+    name: ufw
+    state: started
+    enabled: true
+
+- name: Debian | Allow SSH in UFW
+  ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+
+- name: Debian | Set firewall default policy
+  become: true
+  ufw:
+    state: enabled
+    policy: reject

@@ -1,0 +1,13 @@
+---
+
+- name: SSH | Replace default sshd with more security
+  copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+  notify: Restart SSHD
+
+- name: SSH | Copy SSH banner
+  copy:
+    src: legal_banner
+    dest: /etc/ssh/legal_banner
+  notify: Restart SSHD
