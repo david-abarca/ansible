@@ -1,0 +1,23 @@
+---
+
+- name: Debian | Update repository index
+  become: true
+  apt:
+    name: "*"
+    state: latest
+
+- name: Debian | Full upgrade
+  apt:
+    upgrade: full
+
+- name: Debian | Install shared software
+  become: true
+  apt:
+    name: '{{ packages_shared }}'
+    state: latest
+
+- name: Debian | Install distribution family software
+  become: true
+  apt:
+    name: '{{ packages_apt }}'
+    state: latest

@@ -1,0 +1,20 @@
+---
+
+packages_shared:
+- git
+- htop
+- lsof
+- python3
+- stow
+- tree
+- vim
+- zip
+- zsh
+- fail2ban
+
+packages_apt:
+- acl
+- ufw
+
+packages_dnf:
+- firewalld

@@ -1,0 +1,38 @@
+Protocol 2                             # SSH v1 is old and broken, don't use
+StrictModes yes                        # Check user home dir own and perm
+
+Port 22                                # Default is 22, use another
+
+AuthenticationMethods publickey        # Only pub key method avail for auth
+PubkeyAuthentication yes               # Allow pub key auth
+HostKey /etc/ssh/ssh_host_ed25519_key  # Allow ed25519 pub key au
+
+PermitRootLogin no                     # Disable root login trough SSH
+MaxAuthTries 3                         # Max allowed auth ettempts
+MaxSessions 6                          # Max allowed sessions per us
+
+PasswordAuthentication no              # Disable SSH password auth
+PermitEmptyPasswords no                # Reject con with empty passwords
+X11Forwarding no                       # Disable X11 forwardi
+
+LogLevel VERBOSE                       # Details of failed login attempts
+SyslogFacility AUTH                    # Logging auth and authorization related commands
+
+PermitTunnel no                        # Only SSH connections
+AllowTcpForwarding no                  # Disable tunneling via SSH
+AllowStreamLocalForwarding no          # Disable tunneling via SSH
+GatewayPorts no                        # Disable tunneling via SSH
+AllowAgentForwarding no                # Disable tunneling via SSH
+
+Banner /etc/ssh/legal_banner                     # Legal login banber
+PrintLastLog yes                       # Show last login
+
+ClientAliveInterval 900                # Client timeout 15 min
+ClientAliveCountMax 0                  # Enforce timeout on server side
+LoginGraceTime 30                      # 30 sec to auth from con establish
+MaxStartups 3                          # Max concurrent con establish
+TCPKeepAlive yes                       # Use TCP keepalives between server and client
+AcceptEnv LANG LC_*                    # Allow client to pass locale env
+
+# Enable sFTP over SSH
+Subsystem	sftp	/usr/libexec/openssh/sftp-server

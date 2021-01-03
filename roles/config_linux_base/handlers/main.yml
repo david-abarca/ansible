@@ -1,0 +1,31 @@
+---
+
+- name: Restart SSHD
+  become: true
+  service:
+    name: sshd
+    state: restarted
+
+- name: Restart systemd-journald
+  become: true
+  service:
+    name: systemd-journald
+    state: restarted
+
+- name: Restart ufw
+  become: true
+  service:
+    name: ufw
+    state: restarted
+
+- name: Restart firewalld
+  become: true
+  service:
+    name: firewalld
+    state: restarted
+
+- name: Restart fail2ban
+  become: true
+  service:
+    name: fail2ban
+    state: restarted
