@@ -1,9 +1,9 @@
 ---
 
-- name: Shared | Copy authorized_keys with public keys
-  copy:
-    src: authorized_keys
-    dest: /home/{{ admin_username }}/.ssh
+- name: Shared | Create authorized_keys with public keys
+  template:
+    src: authorized_keys.j2
+    dest: /home/{{ admin_username }}/.ssh/authorized_keys
     mode: '0600'
     owner: "{{ admin_username }}"
     group: '{{ admin_username }}'
@@ -23,27 +23,27 @@
 
 - name: Shared | Check if dotfiles dir created
   ansible.builtin.stat:
-    path: ~/dotfiles
-  register: dotfiles
+    path: ~/dotfiles_priv
+  register: dotfiles_priv
 
 - name: Shared | Cloning dotfiles (initial)
   git: 
-    repo: git@gitlab.com:david.abarca/dotfiles.git
-    dest: ~/dotfiles
+    repo: git@github.com:david-abarca/dotfiles_priv.git
+    dest: ~/dotfiles_priv
     accept_hostkey: true
     key_file: '~/.ssh/{{ ssh_private_key }}'
-  when: dotfiles.stat.isdir is not defined
+  when: dotfiles_priv.stat.isdir is not defined
 
-- name: Shared | Creating symlinks for dotfiles
+- name: Shared | Creating symlinks for dotfiles_priv
   shell: stow --verbose --adopt --target ~ git htop ssh tmux vimrc zsh
   args:
-    chdir: ~/dotfiles
-  when: dotfiles.stat.isdir is not defined
+    chdir: ~/dotfiles_priv
+  when: dotfiles_priv.stat.isdir is not defined
 
-- name: Shared | Cloning dotfiles (overwrite)
+- name: Shared | Cloning dotfiles_priv (overwrite)
   git: 
-    repo: git@gitlab.com:david.abarca/dotfiles.git
-    dest: ~/dotfiles
+    repo: git@github.com:david-abarca/dotfiles_priv.git
+    dest: ~/dotfiles_priv
     accept_hostkey: true
     key_file: '~/.ssh/{{ ssh_private_key }}'
     force: true
