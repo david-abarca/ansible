@@ -15,5 +15,5 @@ To run this playbook you need to configure your own dotfiles and environment var
 
 ```
 ANSIBLE_ADMIN=my_admin_user
-ANSIBLE_SSH_PRIVATE_KEY=repo.com_key_name
+SSH_DOTFILES_KEY=repo.com_key_name
 ```
