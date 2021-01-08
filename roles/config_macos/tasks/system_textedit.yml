@@ -1,0 +1,49 @@
+---
+
+- name: TextEdit | Disable spell checking
+  osx_defaults:
+    domain: com.apple.TextEdit
+    key: CheckSpellingWhileTyping
+    type: int
+    value: 0
+    state: present
+
+- name: TextEdit | Disable spell correction
+  osx_defaults:
+    domain: com.apple.TextEdit
+    key: CorrectSpellingAutomatically
+    type: int
+    value: 0
+    state: present
+
+- name: TextEdit | Disable rich text
+  osx_defaults:
+    domain: com.apple.TextEdit
+    key: RichText
+    type: int
+    value: 0
+    state: present
+
+- name: TextEdit | Disable rich text
+  osx_defaults:
+    domain: com.apple.TextEdit
+    key: ShowRuler
+    type: int
+    value: 0
+    state: present
+
+- name: TextEdit | Disable smart dashes
+  osx_defaults:
+    domain: com.apple.TextEdit
+    key: SmartDashes
+    type: int
+    value: 0
+    state: present
+
+- name: TextEdit | Disable smart quotes
+  osx_defaults:
+    domain: com.apple.TextEdit
+    key: SmartQuotes
+    type: int
+    value: 0
+    state: present

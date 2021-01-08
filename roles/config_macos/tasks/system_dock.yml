@@ -1,0 +1,86 @@
+---
+
+- name: Dock | Disable mission control auto rearrange spaces by usage
+  osx_defaults:
+    domain: com.apple.dock
+    key: mru-spaces
+    type: int
+    value: 0
+    state: present
+  notify:
+  - Restart Dock
+
+- name: Dock | Enable autohide
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: int
+    value: 1
+    state: present
+  notify:
+  - Restart Dock
+
+- name: Dock | Enable magnification
+  osx_defaults:
+    domain: com.apple.dock
+    key: magnification
+    type: int
+    value: 1
+    state: present
+  notify:
+  - Restart Dock
+
+- name: Dock | Minimize effect to scale
+  osx_defaults:
+    domain: com.apple.dock
+    key: mineffect
+    type: string
+    value: scale
+    state: present
+  notify:
+  - Restart Dock
+
+- name: Dock | Minimize to application
+  osx_defaults:
+    domain: com.apple.dock
+    key: 'minimize-to-application'
+    type: int
+    value: 1
+    state: present
+  notify:
+  - Restart Dock
+
+- name: Dock | Title size
+  osx_defaults:
+    domain: com.apple.dock
+    key: tilesize
+    type: float
+    value: 60
+    state: present
+  notify:
+  - Restart Dock
+
+- name: Dock | Dont show recent applications in Dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: show-recents
+    type: int
+    value: 0
+    state: present
+  notify:
+  - Restart Dock
+
+- name: Dock | Set hot corners
+  osx_defaults:
+    domain: com.apple.dock
+    key: '{{ item.domain }}'
+    type: int
+    value: '{{ item.value }}'
+    state: present
+  loop:
+  - { domain: wvous-bl-corner, value: 10 }
+  - { domain: wvous-bl-modifier, value: 0 }
+  - { domain: wvous-tl-corner, value: 5 }
+  - { domain: wvous-tl-modifier, value: 0 }
+  notify:
+  - Restart Dock

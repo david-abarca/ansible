@@ -1,0 +1,32 @@
+---
+
+- name: Homebrew | Check for installation
+  stat:
+    path: /usr/local/bin/brew
+  register: homebrew_check
+
+- name: Homebrew | Install
+  shell: /bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)'
+  when: not homebrew_check.stat.exists
+
+- name: Homebrew | Update
+  homebrew:
+    update_homebrew: true
+  when: homebrew_check.stat.exists
+
+- name: Homebrew | Upgrade packages
+  homebrew:
+    upgrade_all: true
+  when: homebrew_check.stat.exists
+
+- name: Homebrew | Install packages
+  homebrew:
+    name: '{{ item }}'
+    state: present
+  loop: '{{ brew_packages }}'
+
+- name: Homebrew | Install cask software
+  community.general.homebrew_cask:
+    name: '{{ item }}'
+    state: present
+  loop: '{{ brew_cask_packages }}'

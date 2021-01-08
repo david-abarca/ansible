@@ -1,0 +1,61 @@
+---
+
+- name: Language | Set yyyy-mm-dd format
+  command: defaults write NSGlobalDomain AppleICUDateFormatStrings -dict 1 -string 'y-MM-dd'
+  changed_when: false
+
+- name: Language | Turn of autospelling globally
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticSpellingCorrectionEnabled
+    type: int
+    value: 0
+    state: present
+
+- name: Language | Turn of autocapitalisation globally
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticCapitalizationEnabled
+    type: int
+    value: 0
+    state: present
+
+- name: Language | Turn of smart quotes
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticQuoteSubstitutionEnabled
+    type: int
+    value: 0
+    state: present
+
+- name: Language | Enforce dark theme
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleInterfaceStyle
+    type: string
+    value: Dark
+    state: present
+
+- name: Language | Trackpad secondary click
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadRightClick
+    type: int
+    value: 1
+    state: present
+
+- name: Language | Trackpad tap to click
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: Clicking
+    type: int
+    value: 1
+    state: present
+
+- name: Language | Always prefer tabs
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleWindowTabbingMode
+    type: string
+    value: always
+    state: present

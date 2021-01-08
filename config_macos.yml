@@ -1,0 +1,8 @@
+---
+
+- name: Configure macOS host
+  hosts: '{{ target | default("default_none") }}'
+  gather_facts: true
+  
+  roles:
+  - name: config_macos

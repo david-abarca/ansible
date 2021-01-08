@@ -1,0 +1,105 @@
+---
+# roles/restore_mac/tasks/finder.yml
+
+- name: Finder | Hide hard drives on desktop
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowHardDrivesOnDesktop
+    type: int
+    value: 0
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | Hide external hard drives on desktop
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowExternalHardDrivesOnDesktop
+    type: int
+    value: 0
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | Hide connected servers on desktop
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowMountedServersOnDesktop
+    type: int
+    value: 0
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | Show status bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowStatusBar
+    type: string
+    value: 1
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | Show tab view
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowTabView
+    type: string
+    value: 1
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | Show path bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowPathbar
+    type: string
+    value: 1
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | List view
+  osx_defaults:
+    domain: com.apple.finder
+    key: FXPreferredViewStyle
+    type: string
+    value: Nlsv
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | New window path
+  osx_defaults:
+    domain: com.apple.finder
+    key: '{{ item.domain }}'
+    type: string
+    value: '{{ item.value }}'
+    state: present
+  loop:
+  - {domain: NewWindowTarget, value: PfLo}
+  - {domain: NewWindowTargetPath, value: file:///Users/davaba/Downloads/}
+  notify:
+  - Restart Finder
+
+- name: Finder | Display file extensions
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: int
+    value: 1
+    state: present
+  notify:
+  - Restart Finder
+
+- name: Finder | Display hidden files
+  osx_defaults:
+    domain: com.apple.Finder
+    key: AppleShowAllFiles
+    type: string
+    value: true
+    state: present
+  notify:
+  - Restart Finder

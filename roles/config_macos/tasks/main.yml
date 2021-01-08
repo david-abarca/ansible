@@ -1,0 +1,16 @@
+---
+
+- import_tasks: homebrew.yml
+  when: ansible_facts['os_family']|lower == 'darwin'
+
+- import_tasks: system_finder.yml
+  when: ansible_facts['os_family']|lower == 'darwin'
+
+- import_tasks: system_dock.yml
+  when: ansible_facts['os_family']|lower == 'darwin'
+
+- import_tasks: system_textedit.yml
+  when: ansible_facts['os_family']|lower == 'darwin'
+
+- import_tasks: system_language.yml
+  when: ansible_facts['os_family']|lower == 'darwin'
