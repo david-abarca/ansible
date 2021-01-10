@@ -69,6 +69,7 @@ brew_cask_packages:
 - swish                            # Trackpad based window management
 - teamviewer
 - textmate                         # Better textfile editor
+- the-unarchiver                   # Unpacks archive files
 - tor-browser
 - transmission                     # Torrent file downloader
 - vagrant
