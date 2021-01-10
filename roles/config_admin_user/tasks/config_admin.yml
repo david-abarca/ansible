@@ -8,14 +8,6 @@
     owner: "{{ admin_username }}"
     group: '{{ admin_username }}'
 
-- name: Copy dotfiles private key from localhost
-  copy:
-    src: '/Users/{{ admin_username }}/.ssh/{{ ssh_private_key }}'
-    dest: '/home/{{ admin_username }}/.ssh/{{ ssh_private_key }}'
-    mode: 0600
-    owner: "{{ admin_username }}"
-    group: '{{ admin_username }}'
-
 - name: Cloning oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh
