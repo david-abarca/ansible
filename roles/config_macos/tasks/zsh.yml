@@ -1,0 +1,52 @@
+---
+
+- name: Z shell | Clone oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+
+- name: Z shell | Clone Spaceship theme
+  git:
+    repo: https://github.com/denysdovhan/spaceship-prompt.git
+    dest: ~/.oh-my-zsh/custom/themes/spaceship-prompt
+
+- name: Z shell | Create a symbolic link
+  file:
+    src: ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme
+    dest: ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
+    state: link
+
+- name: Z shell | Download font
+  get_url:
+    url: https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Retina.ttf
+    dest: ~/Library/Fonts/FiraCode-Retina.ttf
+
+- name: Z shell | Clone zsh-completions
+  git:
+    repo: https://github.com/zsh-users/zsh-completions
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
+
+- name: Z shell | Clone zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: Z shell | Clone zsh-syntax-highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    version: 1715f39
+
+- name: Z shell | Address zsh compaudit file permissions
+  file:
+    path: /usr/local/share/{{ item }}
+    mode: g-w
+  loop:
+  - zsh
+  - zsh/site-functions
+
+- name: Z shell | Remove terminal message, last login
+  copy:
+    content: ''
+    dest: ~/.hushlogin
+    mode: '0644'
