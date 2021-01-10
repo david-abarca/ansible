@@ -58,13 +58,13 @@ brew_cask_packages:
 - iterm2                           # Better macOS terminal
 - messenger
 - netspot                          # WiFi Analyzer
-- notion                           # Not taking app
+- notion                           # Note taking app
+- omnifocus                        # Task Manager
 - postman                          # API Test
 - pycharm-ce                       # Python IDE
 - signal                           # IM
 - slack                            # Group chat
 - spotify                          # Music streaming
-- stay                             # Window repostition
 - steam                            # Gaming platform
 - swish                            # Trackpad based window management
 - teamviewer
