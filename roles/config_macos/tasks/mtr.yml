@@ -1,0 +1,21 @@
+---
+# roles/restore_mac/tasks/mtr.yml
+
+- name: 'MTR | Get directory version'
+  find:
+    paths: /usr/local/Cellar/mtr/
+    recurse: no
+    file_type: directory
+  register: mtr_dir_version
+
+- name: 'MTR | Create symbolic link, mtr'
+  file:
+    src: '{{ mtr_dir_version.files[0].path }}/sbin/mtr'
+    dest: /usr/local/bin/mtr
+    state: link
+
+- name: 'MTR | Create symbolic link, mtr-packet'
+  file:
+    src: '{{ mtr_dir_version.files[0].path }}/sbin/mtr-packet'
+    dest: /usr/local/bin/mtr-packet
+    state: link
