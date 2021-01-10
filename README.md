@@ -19,6 +19,8 @@ SSH_DOTFILES_KEY=repo.com_key_name
 ```
 ## config_admin_user
 Configure linux admin since root will be disabled as much as possible (SSH for eg.).
+
+Also configured dotfiles, see [my dotfiles repo](https://github.com/david-abarca/dotfiles) dotfiles for more information.
 ## config_macos
 Ansible role for configuring and updating a macOS host. Over time I'll add more features the more I figgure out how to automate.
 - Homebrew (normal and cask)

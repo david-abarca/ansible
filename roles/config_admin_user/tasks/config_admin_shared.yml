@@ -23,30 +23,26 @@
 
 - name: Shared | Check if dotfiles dir created
   ansible.builtin.stat:
-    path: ~/dotfiles_priv
-  register: dotfiles_priv
+    path: ~/dotfiles
+  register: dotfiles
 
-- name: Shared | Cloning dotfiles (initial)
+- name: Shared | Cloning dotfiles
   git: 
-    repo: git@github.com:david-abarca/dotfiles_priv.git
-    dest: ~/dotfiles_priv
-    accept_hostkey: true
-    key_file: '~/.ssh/{{ ssh_private_key }}'
-  when: dotfiles_priv.stat.isdir is not defined
+    repo: git@github.com:david-abarca/dotfiles.git
+    dest: ~/dotfiles
+  when: dotfiles.stat.isdir is not defined
 
-- name: Shared | Creating symlinks for dotfiles_priv
-  shell: stow --verbose --adopt --target ~ git htop ssh tmux vimrc zsh
+- name: Shared | Delete default zshrc
+  file:
+    path: ~/.zshrc
+    state: absent
+  when: dotfiles.stat.isdir is not defined
+
+- name: Shared | Creating symlinks for dotfiles
+  shell: stow --verbose tmux vimrc zsh
   args:
-    chdir: ~/dotfiles_priv
-  when: dotfiles_priv.stat.isdir is not defined
-
-- name: Shared | Cloning dotfiles_priv (overwrite)
-  git: 
-    repo: git@github.com:david-abarca/dotfiles_priv.git
-    dest: ~/dotfiles_priv
-    accept_hostkey: true
-    key_file: '~/.ssh/{{ ssh_private_key }}'
-    force: true
+    chdir: ~/dotfiles
+  when: dotfiles.stat.isdir is not defined
 
 - name: Shared | Cloning spaceship theme
   git:
