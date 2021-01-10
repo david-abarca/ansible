@@ -28,6 +28,10 @@ Ansible role for configuring and updating a macOS host. Over time I'll add more 
 - System Dock (inkl. Mission Control)
 - System TextEdit
 - System language & region
+- dotfiles
+- MTR
+- Z Shell
+- Transmission
 
 Below is required to run homebrew_cask installations.
 ```
