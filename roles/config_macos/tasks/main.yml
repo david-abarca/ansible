@@ -23,3 +23,6 @@
 
 - import_tasks: mtr.yml
   when: ansible_facts['os_family']|lower == 'darwin'
+
+- import_tasks: transmission.yml
+  when: ansible_facts['os_family']|lower == 'darwin'

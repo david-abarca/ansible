@@ -1,0 +1,25 @@
+---
+
+- name: 'Transmission | Delete original torrent files'
+  osx_defaults:
+    domain: org.m0k.transmission
+    key: DeleteOriginalTorrent
+    type: int
+    value: 1
+    state: present
+
+- name: 'Transmission | Speed limit, download'
+  osx_defaults:
+    domain: org.m0k.transmission
+    key: SpeedLimitDownloadLimit
+    type: int
+    value: 3000
+    state: present
+
+- name: 'Transmission | Speed limit, upload'
+  osx_defaults:
+    domain: org.m0k.transmission
+    key: SpeedLimitUploadLimit
+    type: int
+    value: 1000
+    state: present
