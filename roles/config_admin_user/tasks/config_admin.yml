@@ -1,6 +1,6 @@
 ---
 
-- name: Shared | Create authorized_keys with public keys
+- name: Create authorized_keys with public keys
   template:
     src: authorized_keys.j2
     dest: /home/{{ admin_username }}/.ssh/authorized_keys
@@ -8,7 +8,7 @@
     owner: "{{ admin_username }}"
     group: '{{ admin_username }}'
 
-- name: Shared | Copy dotfiles private key from localhost
+- name: Copy dotfiles private key from localhost
   copy:
     src: '/Users/{{ admin_username }}/.ssh/{{ ssh_private_key }}'
     dest: '/home/{{ admin_username }}/.ssh/{{ ssh_private_key }}'
@@ -16,56 +16,56 @@
     owner: "{{ admin_username }}"
     group: '{{ admin_username }}'
 
-- name: Shared | Cloning oh-my-zsh
+- name: Cloning oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.oh-my-zsh
 
-- name: Shared | Check if dotfiles dir created
+- name: Check if dotfiles dir created
   ansible.builtin.stat:
     path: ~/dotfiles
   register: dotfiles
 
-- name: Shared | Cloning dotfiles
+- name: Cloning dotfiles
   git: 
     repo: git@github.com:david-abarca/dotfiles.git
     dest: ~/dotfiles
   when: dotfiles.stat.isdir is not defined
 
-- name: Shared | Delete default zshrc
+- name: Delete default zshrc
   file:
     path: ~/.zshrc
     state: absent
   when: dotfiles.stat.isdir is not defined
 
-- name: Shared | Creating symlinks for dotfiles
+- name: Creating symlinks for dotfiles
   shell: stow --verbose tmux vimrc zsh
   args:
     chdir: ~/dotfiles
   when: dotfiles.stat.isdir is not defined
 
-- name: Shared | Cloning spaceship theme
+- name: Cloning spaceship theme
   git:
     repo: https://github.com/denysdovhan/spaceship-prompt.git
     dest: ~/.oh-my-zsh/custom/themes/spaceship-prompt
 
-- name: Shared | Creating symbolic link
+- name: Creating symbolic link
   file:
     src: ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme
     dest: ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
     state: link
 
-- name: Shared | Cloning zsh-completions
+- name: Cloning zsh-completions
   git:
     repo: https://github.com/zsh-users/zsh-completions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
 
-- name: Shared | Cloning zsh-autosuggestions
+- name: Cloning zsh-autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-- name: Shared | Cloning zsh-syntax-highlighting
+- name: Cloning zsh-syntax-highlighting
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
