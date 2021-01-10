@@ -1,0 +1,24 @@
+---
+
+- name: Check if dotfiles dir created
+  ansible.builtin.stat:
+    path: ~/dotfiles
+  register: dotfiles
+
+- name: Cloning dotfiles
+  git: 
+    repo: git@github.com:david-abarca/dotfiles.git
+    dest: ~/dotfiles
+  when: dotfiles.stat.isdir is not defined
+
+- name: Delete default zshrc
+  file:
+    path: ~/.zshrc
+    state: absent
+  when: dotfiles.stat.isdir is not defined
+
+- name: Creating symlinks for dotfiles
+  shell: stow --verbose tmux vimrc zsh
+  args:
+    chdir: ~/dotfiles
+  when: dotfiles.stat.isdir is not defined

@@ -14,3 +14,6 @@
 
 - import_tasks: system_language.yml
   when: ansible_facts['os_family']|lower == 'darwin'
+
+- import_tasks: dotfiles.yml
+  when: ansible_facts['os_family']|lower == 'darwin'
