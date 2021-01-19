@@ -1,0 +1,9 @@
+---
+
+- name: Configure Linux host
+  hosts: '{{ target | default("default_none") }}'
+  gather_facts: true
+  
+  roles:
+  - name: config_linux_base
+  - name: config_admin_user
