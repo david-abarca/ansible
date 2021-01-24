@@ -45,6 +45,7 @@ brew_cask_packages:
 - balenaetcher                     # USB image flash
 - battle-net                       # Gaming platform
 - calibre                          # Ebook manager
+- capto                            # Screen video recorder
 - disk-inventory-x                 # Disk usage visualisation
 - docker
 - google-chrome                    # Add Google Chrome for ts and chromecast
