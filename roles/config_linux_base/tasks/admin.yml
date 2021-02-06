@@ -1,0 +1,41 @@
+---
+
+- name: Set admin group for Ubuntu
+  set_fact:
+    admin_group: sudo
+  when: ansible_facts['os_family']|lower == "debian"
+
+- name: Set admin group for CentOS
+  set_fact:
+    admin_group: wheel
+  when: ansible_facts['os_family']|lower == "redhat"
+
+- name: Add new admin user
+  become: true
+  user:
+    name: "{{ admin_username }}"
+    groups: "{{ admin_group }}"
+    shell: /bin/zsh
+    generate_ssh_key: yes
+    ssh_key_type: ed25519
+    ssh_key_file: .ssh/id_ed25519
+    password: "{{ admin_password }}"
+
+- name: Create .ansible/tmp for new admin
+  become: true
+  file:
+    path: /home/{{ admin_username }}/.ansible/tmp
+    state: directory
+    mode: '0700'
+    owner: "{{ admin_username }}"
+    group: "{{ admin_group }}"
+
+- name: Add admin user to own sudoers.d path
+  become: true
+  lineinfile:
+    path: "/etc/sudoers.d/{{ admin_username }}"
+    line: "{{ admin_username }}        ALL=(ALL)       NOPASSWD: ALL"
+    state: present
+    insertafter: EOF
+    validate: "visudo -cf %s"
+    create: true

@@ -8,13 +8,7 @@
 
 - import_tasks: software_shared.yml
 
-- import_tasks: admin_redhat.yml
-  when: ansible_facts['os_family']|lower == 'redhat'
-
-- import_tasks: admin_debian.yml
-  when: ansible_facts['os_family']|lower == 'debian'
-
-- import_tasks: admin_shared.yml
+- import_tasks: admin.yml
 
 - import_tasks: journalctl_shared.yml
 
