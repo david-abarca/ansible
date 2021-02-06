@@ -26,3 +26,6 @@
 
 - import_tasks: transmission.yml
   when: ansible_facts['os_family']|lower == 'darwin'
+
+- import_tasks: firewall.yml
+  when: ansible_facts['os_family']|lower == 'darwin'

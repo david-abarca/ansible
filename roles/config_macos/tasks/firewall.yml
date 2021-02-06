@@ -1,0 +1,10 @@
+---
+
+- name: Firewall | Enable firewall (since non-user sudo and password required -K)
+  become: true
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.alf
+    key: globalstate
+    type: int
+    value: 1
+    state: present
