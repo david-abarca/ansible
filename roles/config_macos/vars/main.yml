@@ -49,6 +49,7 @@ brew_cask_packages:
 - capto                            # Screen video recorder
 - disk-inventory-x                 # Disk usage visualisation
 - docker
+- github                           # GitHub desktop
 - google-chrome                    # Add Google Chrome for ts and chromecast
 - drawio
 - textexpander                     # Smarter communication
