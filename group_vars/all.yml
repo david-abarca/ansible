@@ -1,7 +1,0 @@
----
-
-admin_username: '{{ lookup("env", "ANSIBLE_ADMIN") }}'
-
-admin_password: '{{ lookup("env", "ANSIBLE_ADMIN_PASSWORD_ENCRYPTED") }}'
-
-ssh_private_key: '{{ lookup("env", "SSH_DOTFILES_KEY") }}'
