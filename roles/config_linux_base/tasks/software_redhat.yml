@@ -40,9 +40,12 @@
   register: duf_latest
 
 - name: RedHat | Install duf trough dnf
+  become: true
   dnf:
     name: "{{ item.browser_download_url }}"
     disable_gpg_check: true
   loop: "{{ duf_latest.json.assets }}"
+  loop_control:
+    label: "{{ item.name }}"
   when: "'linux_amd64.rpm' in item.name"
   

@@ -1,6 +1,7 @@
 ---
 
 - name: Shared | Create customised config file
+  become: true
   copy:
     src: jail.local
     dest: /etc/fail2ban/jail.local

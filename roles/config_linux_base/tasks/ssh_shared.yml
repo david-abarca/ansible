@@ -1,12 +1,14 @@
 ---
 
 - name: SSH | Replace default sshd with more security
+  become: true
   template:
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
   notify: Restart SSHD
 
 - name: SSH | Copy SSH banner
+  become: true
   copy:
     src: legal_banner
     dest: /etc/ssh/legal_banner

@@ -7,6 +7,7 @@
     enabled: true
 
 - name: Debian | Allow SSH in UFW
+  become: true
   ufw:
     rule: allow
     port: '22'

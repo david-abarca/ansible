@@ -7,12 +7,14 @@
     enabled: true
 
 - name: RedHat | Allow SSH in firewalld
+  become: true
   ansible.posix.firewalld:
     port: '22/tcp'
     state: enabled
     permanent: true
 
 - name: RedHat | Enable loggin of denied traffic
+  become: true
   lineinfile:
     path: /etc/firewalld/firewalld.conf
     regexp: '^LogDenied'

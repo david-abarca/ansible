@@ -27,6 +27,7 @@
     mode: '0755'
 
 - name: Shared | Cleanup exa download
+  become: true
   file:
     path: /tmp/exa-linux-x86_64
     state: absent
