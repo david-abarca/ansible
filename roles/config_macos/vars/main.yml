@@ -4,6 +4,7 @@ brew_packages:
 - awscli                           # AWS CLI
 - exa                              # Enhanced ls
 - fd                               # Better find
+- duf                              # Better du
 - gnu-tar                          # GNU version of the tar archiving
 - gotop                            # Graphical activity monitor
 - graphviz                         # Used in ansible-playbook-grapher
