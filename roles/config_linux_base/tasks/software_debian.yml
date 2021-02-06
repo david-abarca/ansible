@@ -21,3 +21,17 @@
   apt:
     name: '{{ packages_apt }}'
     state: latest
+
+- name: Debian | Check for latest duf
+  uri:
+    url: https://api.github.com/repos/muesli/duf/releases/latest
+    return_content: true
+  register: duf_latest
+
+- name: Debian | Install duf trough apt
+  apt:
+    deb: "{{ item.browser_download_url }}"
+  loop: "{{ duf_latest.json.assets }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: "'linux_amd64.deb' in item.name"

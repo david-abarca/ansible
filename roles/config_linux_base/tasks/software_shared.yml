@@ -1,11 +1,22 @@
 ---
 
+- name: Shared | Check for latest exa
+  uri:
+    url: https://api.github.com/repos/ogham/exa/releases/latest
+    return_content: true
+  register: exa_latest
+
 - name: Shared | Download and unpack exa
   become: true
   unarchive:
-    src: https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
+    src: "{{ item.browser_download_url }}"
     remote_src: true
     dest: /tmp/
+  loop: "{{ exa_latest.json.assets }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: "'exa-linux-x86_64' in item.name"
+  changed_when: false
 
 - name: Shared | Copy exa binary
   become: true
@@ -17,8 +28,9 @@
 
 - name: Shared | Cleanup exa download
   file:
-    path: /usr/bin/exa-linux-x86_64
+    path: /tmp/exa-linux-x86_64
     state: absent
+  changed_when: false
 
 - name: Shared | Download prettyping
   become: true

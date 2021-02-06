@@ -26,9 +26,23 @@
     name: '{{ packages_dnf }}'
     state: latest
 
-- name: RedHat |  Install EPEL separate (CentOS only)
+- name: RedHat | Install EPEL separate (CentOS only)
   become: true
   dnf:
     name: epel-release
     state: latest
   when: ansible_distribution|lower == 'centos'
+
+- name: RedHat | Check for latest duf
+  uri:
+    url: https://api.github.com/repos/muesli/duf/releases/latest
+    return_content: true
+  register: duf_latest
+
+- name: RedHat | Install duf trough dnf
+  dnf:
+    name: "{{ item.browser_download_url }}"
+    disable_gpg_check: true
+  loop: "{{ duf_latest.json.assets }}"
+  when: "'linux_amd64.rpm' in item.name"
+  
