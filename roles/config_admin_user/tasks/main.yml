@@ -1,3 +1,63 @@
 ---
 
-- import_tasks: config_admin.yml
+- name: Create authorized_keys with public keys
+  template:
+    src: authorized_keys.j2
+    dest: /home/{{ admin_username }}/.ssh/authorized_keys
+    mode: '0600'
+    owner: "{{ admin_username }}"
+    group: '{{ admin_username }}'
+
+- name: Cloning oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+
+- name: Check if dotfiles dir created
+  ansible.builtin.stat:
+    path: ~/dotfiles
+  register: dotfiles
+
+- name: Cloning dotfiles
+  git: 
+    repo: https://github.com/david-abarca/dotfiles.git
+    dest: ~/dotfiles
+  when: dotfiles.stat.isdir is not defined
+
+- name: Delete default zshrc
+  file:
+    path: ~/.zshrc
+    state: absent
+  when: dotfiles.stat.isdir is not defined
+
+- name: Creating symlinks for dotfiles
+  shell: stow --verbose tmux vimrc zsh
+  args:
+    chdir: ~/dotfiles
+  when: dotfiles.stat.isdir is not defined
+
+- name: Cloning spaceship theme
+  git:
+    repo: https://github.com/denysdovhan/spaceship-prompt.git
+    dest: ~/.oh-my-zsh/custom/themes/spaceship-prompt
+
+- name: Creating symbolic link
+  file:
+    src: ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme
+    dest: ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
+    state: link
+
+- name: Cloning zsh-completions
+  git:
+    repo: https://github.com/zsh-users/zsh-completions
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
+
+- name: Cloning zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: Cloning zsh-syntax-highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
