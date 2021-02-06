@@ -6,4 +6,8 @@
   
   roles:
   - name: config_linux_base
+
   - name: config_admin_user
+    # Run all tasks as new admin for file ownership and permission consistency
+    become: true
+    become_user: "{{ admin_username }}"
