@@ -24,7 +24,7 @@ AllowStreamLocalForwarding no          # Disable tunneling via SSH
 GatewayPorts no                        # Disable tunneling via SSH
 AllowAgentForwarding no                # Disable tunneling via SSH
 
-Banner /etc/ssh/legal_banner                     # Legal login banber
+Banner /etc/ssh/legal_banner           # Legal login banber
 PrintLastLog yes                       # Show last login
 
 ClientAliveInterval 900                # Client timeout 15 min
@@ -35,4 +35,8 @@ TCPKeepAlive yes                       # Use TCP keepalives between server and c
 AcceptEnv LANG LC_*                    # Allow client to pass locale env
 
 # Enable sFTP over SSH
+{% if ansible_facts['os_family']|lower == 'debian' %}
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+{% elif ansible_facts['os_family']|lower == 'redhat' %}
 Subsystem	sftp	/usr/libexec/openssh/sftp-server
+{% endif %}

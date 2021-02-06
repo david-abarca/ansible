@@ -1,8 +1,8 @@
 ---
 
 - name: SSH | Replace default sshd with more security
-  copy:
-    src: sshd_config
+  template:
+    src: sshd_config.j2
     dest: /etc/ssh/sshd_config
   notify: Restart SSHD
 
