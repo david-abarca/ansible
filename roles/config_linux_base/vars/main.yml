@@ -2,15 +2,16 @@
 
 packages_shared:
 - git
+- fail2ban
 - htop
 - lsof
 - python3
 - stow
+- tldr
 - tree
 - vim
 - zip
 - zsh
-- fail2ban
 
 packages_apt:
 - acl
