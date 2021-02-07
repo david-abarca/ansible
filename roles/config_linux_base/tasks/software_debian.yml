@@ -1,15 +1,32 @@
 ---
 
-- name: Debian | Update repository index
+- name: Debian | Update all packages
   become: true
   apt:
-    name: "*"
-    state: latest
+    update_cache: true 
+    force_apt_get: true
 
-- name: Debian | Full upgrade
+- name: Debian | Upgrade all packages
   become: true
   apt:
-    upgrade: full
+    upgrade: dist
+    force_apt_get: true
+
+# - name: Debian | Check if a reboot is needed for Debian and Ubuntu boxes
+#   register: reboot_required_file
+#   stat:
+#     path: /var/run/reboot-required
+#     get_md5: no
+
+# - name: Reboot the Debian or Ubuntu server
+#   reboot:
+#     msg: "Reboot initiated by Ansible due to kernel updates"
+#     connect_timeout: 5
+#     reboot_timeout: 300
+#     pre_reboot_delay: 0
+#     post_reboot_delay: 30
+#     test_command: uptime
+#   when: reboot_required_file.stat.exists
 
 - name: Debian | Install shared software
   become: true
