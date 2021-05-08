@@ -65,6 +65,7 @@ brew_cask_packages:
   - pycharm-ce # Python IDE
   - signal # IM
   - slack # Group chat
+  - smartgit # Git visualization & compare
   - spotify # Music streaming
   - steam # Gaming platform
   - swish # Trackpad based window management
