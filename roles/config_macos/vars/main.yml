@@ -1,88 +1,87 @@
 ---
-
 brew_packages:
-- awscli                           # AWS CLI
-- exa                              # Enhanced ls
-- fd                               # Better find
-- duf                              # Better du
-- gnu-tar                          # GNU version of the tar archiving
-- gotop                            # Graphical activity monitor
-- graphviz                         # Used in ansible-playbook-grapher
-- htop
-- iproute2mac                      # ip-command similarity
-- jq                               # JSON parser
-- kubernetes-cli                   # kubectl CLI
-- nghttp2                          # Insyn i hur webfiler levereras
-- lxc                              # Linux Containers
-- ncdu                             # Disk usage utility
-- netcat                           # Netcat
-- nmap                             # Netmap
-- node                             # JavaScript runtime environment
-- npm
-- mtr                              # Enhanced traceroute
-- packer                           # AWS custom AMI creator
-- podman                           # RedHat container manager
-- prettyping                       # Enhanced ping
-- pstree                           # Running processes as tree structure
-- siege                            # Load test server
-- stow                             # Symlink farm manager
-- telegraf                         # Monitoring solution
-- terraform                        # IaC
-- terraform-docs                   # Terraform docs
-- tig                              # Text mode git interface
-- tldr                             # Get to the point doc instead of man
-- tmux
-- tree                             # Directory listing
-- vagrant-completion
-- watch                            # Execute program periodically
-- wget
-- zip                              # macOS built-in uses some odd alg
+  - awscli # AWS CLI
+  - exa # Enhanced ls
+  - fd # Better find
+  - duf # Better du
+  - gnu-tar # GNU version of the tar archiving
+  - gotop # Graphical activity monitor
+  - graphviz # Used in ansible-playbook-grapher
+  - htop
+  - iproute2mac # ip-command similarity
+  - jq # JSON parser
+  - kubernetes-cli # kubectl CLI
+  - nghttp2 # Insyn i hur webfiler levereras
+  - lxc # Linux Containers
+  - ncdu # Disk usage utility
+  - netcat # Netcat
+  - nmap # Netmap
+  - node # JavaScript runtime environment
+  - npm
+  - mtr # Enhanced traceroute
+  - packer # AWS custom AMI creator
+  - prettyping # Enhanced ping
+  - pstree # Running processes as tree structure
+  - siege # Load test server
+  - stow # Symlink farm manager
+  - telegraf # Monitoring solution
+  - terraform # IaC
+  - terraform-docs # Terraform docs
+  - tig # Text mode git interface
+  - tldr # Get to the point doc instead of man
+  - tmux
+  - tree # Directory listing
+  - vagrant-completion
+  - watch # Execute program periodically
+  - wget
+  - zip # macOS built-in uses some odd alg
 
 brew_cask_packages:
-- 1password                        # Password Manager
-- aerial                           # Better screensaver
-- alfred                           # Efficiency booster
-- anki                             # Spaced repetition
-- balenaetcher                     # USB image flash
-- battle-net                       # Gaming platform
-- calibre                          # Ebook manager
-- capto                            # Screen video recorder
-- disk-inventory-x                 # Disk usage visualisation
-- docker
-- github                           # GitHub desktop
-- google-chrome                    # Add Google Chrome for ts and chromecast
-- drawio
-- textexpander                     # Smarter communication
-- firefox                          # For web development
-- google-backup-and-sync
-- gpg-suite                        # Message encryption
-- hazel                            # Automated organization
-- iina                             # Media player
-- iterm2                           # Better macOS terminal
-- messenger
-- netspot                          # WiFi Analyzer
-- notion                           # Note taking app
-- omnifocus                        # Task Manager
-- postman                          # API Test
-- pycharm-ce                       # Python IDE
-- signal                           # IM
-- slack                            # Group chat
-- spotify                          # Music streaming
-- steam                            # Gaming platform
-- swish                            # Trackpad based window management
-- teamviewer
-- textmate                         # Better textfile editor
-- the-unarchiver                   # Unpacks archive files
-- tor-browser
-- transmission                     # Torrent file downloader
-- vagrant
-- vagrant-vmware-utility
-- virtualbox
-- virtualbox-extension-pack
-- viscosity                        # VPN client
-- visual-studio-code
-- whatsapp                         # IM
-- wireshark
-- vmware-fusion                    # VM Manager
-- zoom
-- xquartz
+  - 1password # Password Manager
+  - aerial # Better screensaver
+  - alfred # Efficiency booster
+  - anki # Spaced repetition
+  - balenaetcher # USB image flash
+  - battle-net # Gaming platform
+  - calibre # Ebook manager
+  - capto # Screen video recorder
+  - disk-inventory-x # Disk usage visualisation
+  - docker
+  - dockstation # Docker UI management
+  - github # GitHub desktop
+  - google-chrome # Add Google Chrome for ts and chromecast
+  - drawio
+  - textexpander # Smarter communication
+  - firefox # For web development
+  - google-backup-and-sync
+  - hazel # Automated organization
+  - iina # Media player
+  - iterm2 # Better macOS terminal
+  - messenger
+  - netspot # WiFi Analyzer
+  - notion # Note taking app
+  - omnifocus # Task Manager
+  - postman # API Test
+  - pycharm-ce # Python IDE
+  - signal # IM
+  - slack # Group chat
+  - spotify # Music streaming
+  - steam # Gaming platform
+  - swish # Trackpad based window management
+  - teamviewer
+  - textmate # Better textfile editor
+  - typora # Markdown
+  - the-unarchiver # Unpacks archive files
+  - tor-browser
+  - transmission # Torrent file downloader
+  - vagrant
+  - vagrant-vmware-utility
+  - virtualbox
+  - virtualbox-extension-pack
+  - viscosity # VPN client
+  - visual-studio-code
+  - whatsapp # IM
+  - wireshark
+  - vmware-fusion # VM Manager
+  - zoom
+  - xquartz
