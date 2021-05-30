@@ -1,5 +1,4 @@
 ---
-
 - name: Shared | Check for latest exa
   uri:
     url: https://api.github.com/repos/ogham/exa/releases/latest
@@ -15,22 +14,26 @@
   loop: "{{ exa_latest.json.assets }}"
   loop_control:
     label: "{{ item.name }}"
-  when: "'exa-linux-x86_64' in item.name"
+  when: "'exa-linux-x86_64-v' in item.name"
   changed_when: false
 
 - name: Shared | Copy exa binary
   become: true
   copy:
-    src: /tmp/exa-linux-x86_64
+    src: /tmp/bin/exa
     remote_src: true
     dest: /usr/bin/exa
-    mode: '0755'
+    mode: "0755"
 
 - name: Shared | Cleanup exa download
   become: true
   file:
     path: /tmp/exa-linux-x86_64
     state: absent
+  loop:
+    - bin
+    - completions
+    - man
   changed_when: false
 
 - name: Shared | Download prettyping
@@ -38,4 +41,4 @@
   get_url:
     url: https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping
     dest: /usr/bin/
-    mode: '0755'
+    mode: "0755"
